@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://sistema.goldinformatica.com.br'),
+    'url' => env('APP_URL', 'https://sistema.goldinformatica.com.br/goldtotal_inertia'),
     //'url' => env('APP_URL', 'http://localhost'),
 
 
