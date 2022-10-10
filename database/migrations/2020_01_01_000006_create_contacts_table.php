@@ -26,6 +26,13 @@ class CreateContactsTable extends Migration
             $table->string('region', 50)->nullable();
             $table->string('country', 2)->nullable();
             $table->string('postal_code', 25)->nullable();
+            $table->string('cliente_tipo', 50)->nullable();
+            $table->string('contribuinte', 50)->nullable();
+            $table->string('cpf_cnpj', 11)->nullable();
+            $table->string('inscr_estadual', 11)->nullable();
+            $table->string('inscr_municipal', 11)->nullable();
+            $table->string('inscr_suframa', 11)->nullable();
+            $table->string('bairro', 50)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

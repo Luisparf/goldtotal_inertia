@@ -27,6 +27,9 @@ class ContactsController extends Controller
                     'phone' => $contact->phone,
                     'city' => $contact->city,
                     'deleted_at' => $contact->deleted_at,
+                    'cpf_cnpj' => $contact->cpf_cnpj,
+                    'region' => $contact->region,
+                    'cliente_tipo' => $contact->cliente_tipo,
                     'organization' => $contact->organization ? $contact->organization->only('name') : null,
                 ]),
         ]);
@@ -60,10 +63,16 @@ class ContactsController extends Controller
                 'region' => ['nullable', 'max:50'],
                 'country' => ['nullable', 'max:2'],
                 'postal_code' => ['nullable', 'max:25'],
+                'cliente_tipo' => ['required', 'max:50'],
+                'contribuinte' => ['required', 'max:50'],
+                'cpf_cnpj' => ['required', 'max:11'],
+                'inscr_estadual' => ['nullable', 'max:11'],
+                'inscr_municipal' => ['nullable', 'max:11'],
+                'inscr_suframa' => ['nullable', 'max:11'],
             ])
         );
 
-        return Redirect::route('contacts')->with('success', 'Contact created.');
+        return Redirect::route('contacts')->with('success', 'Cliente criado.');
     }
 
     public function edit(Contact $contact)
@@ -82,6 +91,12 @@ class ContactsController extends Controller
                 'country' => $contact->country,
                 'postal_code' => $contact->postal_code,
                 'deleted_at' => $contact->deleted_at,
+                'cliente_tipo' => ['required', 'max:50'],
+                'contribuinte' => ['required', 'max:50'],
+                'cpf_cnpj' => ['required', 'max:11'],
+                'inscr_estadual' => ['required', 'max:11'],
+                'inscr_municipal' => ['required', 'max:11'],
+                'inscr_suframa' => ['required', 'max:11'],
             ],
             'organizations' => Auth::user()->account->organizations()
                 ->orderBy('name')
@@ -108,23 +123,29 @@ class ContactsController extends Controller
                 'region' => ['nullable', 'max:50'],
                 'country' => ['nullable', 'max:2'],
                 'postal_code' => ['nullable', 'max:25'],
+                'cliente_tipo' => ['required', 'max:50'],
+                'contribuinte' => ['required', 'max:50'],
+                'cpf_cnpj' => ['required', 'max:11'],
+                'inscr_estadual' => ['required', 'max:11'],
+                'inscr_municipal' => ['required', 'max:11'],
+                'inscr_suframa' => ['required', 'max:11'],
             ])
         );
 
-        return Redirect::back()->with('success', 'Contact updated.');
+        return Redirect::back()->with('success', 'Cliente atualizado.');
     }
 
     public function destroy(Contact $contact)
     {
         $contact->delete();
 
-        return Redirect::back()->with('success', 'Contact deleted.');
+        return Redirect::back()->with('success', 'Cliente excluído.');
     }
 
     public function restore(Contact $contact)
     {
         $contact->restore();
 
-        return Redirect::back()->with('success', 'Contact restored.');
+        return Redirect::back()->with('success', 'Cliente restaurado.');
     }
 }
